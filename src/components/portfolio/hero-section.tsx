@@ -17,7 +17,7 @@ export function HeroSection() {
   const skillCount = skills.reduce((sum, group) => sum + group.items.length, 0);
 
   return (
-    <section id="home" className="scroll-mt-24 pt-11 sm:pt-16 lg:pt-18">
+    <section id="home" className="scroll-mt-32 pt-4 sm:pt-6 lg:pt-8">
       <div className="grid items-center gap-11 lg:grid-cols-[1.14fr_0.86fr] lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 22 }}

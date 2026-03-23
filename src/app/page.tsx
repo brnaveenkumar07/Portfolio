@@ -15,7 +15,7 @@ export default function HomePage() {
       <div className="pointer-events-none absolute inset-x-0 -top-105 h-180 bg-[radial-gradient(circle_at_top,rgba(58,184,122,0.24),transparent_62%)]" />
       <div className="pointer-events-none absolute top-56 -right-30 h-120 w-120 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_70%)] blur-2xl" />
       <Navbar />
-      <main className="mx-auto w-[min(1040px,94vw)] pb-24">
+      <main className="mx-auto w-[min(1040px,94vw)] pb-24 pt-28 sm:pt-32">
         <HeroSection />
         <div className="space-y-20 pt-18 sm:space-y-24 sm:pt-20 lg:space-y-26">
           <ProjectsSection />
