@@ -87,18 +87,21 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.12, ease: "easeOut" }}
-          className="mx-auto w-full max-w-sm lg:max-w-md"
+          className="mx-auto flex w-full justify-center lg:justify-end"
         >
-          <div className="relative overflow-hidden rounded-[2.2rem] border border-zinc-800/90 bg-zinc-900 p-3 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_35px_120px_rgba(0,0,0,0.62)]">
-            <div className="relative aspect-4/5 overflow-hidden rounded-[1.7rem]">
+          <div className="relative w-full max-w-[17rem] sm:max-w-[18.5rem] lg:max-w-[20rem]">
+            <div className="pointer-events-none absolute inset-[-28%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0.07)_28%,rgba(0,0,0,0)_68%)] blur-xl" />
+            <div className="relative overflow-hidden rounded-full border border-white/16 bg-[linear-gradient(180deg,rgba(84,84,88,0.88),rgba(42,42,46,0.94))] p-2.5 shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_30px_80px_rgba(0,0,0,0.58)]">
+              <div className="relative aspect-square overflow-hidden rounded-full border border-white/10 bg-zinc-950">
               <Image
                 src={profileImageSrc}
                 alt="B R Naveen Kumar"
                 fill
                 priority
-                sizes="(max-width: 1024px) 90vw, 420px"
-                className="object-cover object-center"
+                sizes="(max-width: 640px) 17rem, (max-width: 1024px) 18.5rem, 20rem"
+                className="object-cover object-[50%_18%]"
               />
+              </div>
             </div>
           </div>
         </motion.div>
