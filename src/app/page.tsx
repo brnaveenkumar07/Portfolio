@@ -1,56 +1,33 @@
+import { AboutSection } from "@/components/portfolio/about-section";
+import { ContactSection } from "@/components/portfolio/contact-section";
+import { ExperienceSection } from "@/components/portfolio/experience-section";
+import { Footer } from "@/components/portfolio/footer";
+import { GithubSection } from "@/components/portfolio/github-section";
+import { HeroSection } from "@/components/portfolio/hero-section";
+import { Navbar } from "@/components/portfolio/navbar";
+import { ProjectsSection } from "@/components/portfolio/projects-section";
+import { ResumeSection } from "@/components/portfolio/resume-section";
+import { SkillsSection } from "@/components/portfolio/skills-section";
+
 export default function HomePage() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "grid",
-        placeItems: "center",
-        padding: "2rem",
-      }}
-    >
-      <section
-        style={{
-          width: "min(720px, 100%)",
-          padding: "3rem",
-          borderRadius: "24px",
-          background: "rgba(255, 255, 255, 0.88)",
-          boxShadow: "0 24px 80px rgba(15, 23, 42, 0.12)",
-          backdropFilter: "blur(16px)",
-        }}
-      >
-        <p
-          style={{
-            margin: 0,
-            fontSize: "0.9rem",
-            fontWeight: 700,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "#2563eb",
-          }}
-        >
-          Next.js is ready
-        </p>
-        <h1
-          style={{
-            margin: "1rem 0 0.75rem",
-            fontSize: "clamp(2.5rem, 7vw, 4.5rem)",
-            lineHeight: 1,
-          }}
-        >
-          Your project has been set up successfully.
-        </h1>
-        <p
-          style={{
-            margin: 0,
-            fontSize: "1.05rem",
-            lineHeight: 1.7,
-            color: "#334155",
-          }}
-        >
-          Start editing <code>src/app/page.tsx</code> and run <code>npm run dev</code>{" "}
-          to launch the local development server.
-        </p>
-      </section>
-    </main>
+    <div className="relative overflow-x-hidden">
+      <div className="pointer-events-none absolute inset-x-0 -top-105 h-180 bg-[radial-gradient(circle_at_top,rgba(58,184,122,0.24),transparent_62%)]" />
+      <div className="pointer-events-none absolute top-56 -right-30 h-120 w-120 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_70%)] blur-2xl" />
+      <Navbar />
+      <main className="mx-auto w-[min(1040px,94vw)] pb-24">
+        <HeroSection />
+        <div className="space-y-20 pt-18 sm:space-y-24 sm:pt-20 lg:space-y-26">
+          <ProjectsSection />
+          <GithubSection />
+          <ExperienceSection />
+          <SkillsSection />
+          <AboutSection />
+          <ResumeSection />
+          <ContactSection />
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }

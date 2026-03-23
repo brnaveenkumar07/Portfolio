@@ -1,13 +1,40 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
+import { profileImageSrc } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+function getSiteUrl() {
+  const rawUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000");
+
+  return rawUrl.replace(/\/$/, "");
+}
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "A Next.js project scaffolded for your portfolio site.",
+  metadataBase: new URL(siteUrl),
+  title: "B R Naveen Kumar | Full Stack Developer",
+  description:
+    "Portfolio of B R Naveen Kumar, a Full Stack Developer focused on scalable web apps with modern frontend and backend technologies.",
+  openGraph: {
+    title: "B R Naveen Kumar | Full Stack Developer",
+    description:
+      "Explore projects, skills, experience, and GitHub contributions of B R Naveen Kumar.",
+    type: "website",
+    images: [profileImageSrc],
+  },
+  icons: {
+    icon: profileImageSrc,
+    apple: profileImageSrc,
+  },
 };
 
 export default function RootLayout({
@@ -16,8 +43,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body>{children}</body>
+    <html lang="en" className={cn("dark")}>
+      <body>
+        <TooltipProvider>
+          {children}
+          <Toaster />
+        </TooltipProvider>
+      </body>
     </html>
   );
 }

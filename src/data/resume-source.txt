@@ -1,0 +1,59 @@
+B R NAVEEN KUMAR
+
+Bengaluru, India                           brnaveenkumar1307@gmail.com  8197456715
+                                                 LinkedIn GitHub
+
+Summary
+
+  Full Stack Developer with hands-on experience in building scalable web applications using modern technologies. Skilled
+  in both frontend and backend development, with a strong foundation in problem-solving and clean code practices.
+  Completed internship experience at Prodigy Infotech, delivering real-world projects. Passionate about learning, opti-
+  mizing performance, and creating user-focused solutions.
+
+Core Technical Skills
+
+  Programming:
+  JavaScript, TypeScript, SQL, Python
+  Frontend:
+  React.js, Next.js, Tailwind CSS, ShadCN
+  Backend & Infrastructure:
+  Node.js, Express.js
+  Databases:
+  MongoDB, SQL
+  Tools:
+  Git, GitHub, Postman, VS Code , Codex
+
+Experience                                                                                 Feb 2026 - Mar 2026
+
+  Full Stack Developer Intern, Prodigy Infotech
+
+      • Completed a hands-on internship at Prodigy Infotech, working on real-world full-
+        stack development tasks.
+
+      • Developed and deployed multiple projects, strengthening skills in frontend and
+        backend technologies.
+
+      • Improved problem-solving abilities by debugging and optimizing application per-
+        formance.
+
+      • Collaborated on task-based projects, enhancing code quality, version control, and
+        development workflow.
+
+Projects                                                                                   Live Demo
+                                                                                           Live Demo
+  SocialApp                                                                                Live Demo
+      • SocialApp is built using Next.js 16 (App Router), React 19, Prisma ORM, and Post-
+        greSQL, and includes several essential features found in real-world social plat-
+        forms.
+      • Notifications – Real-time-style alerts for likes, comments, and follows
+
+  E-Commerce
+      • Designed to simulate a real-world online store with a complete end-to-end shop-
+        ping experience from browsing products to placing orders and managing them
+        through an admin dashboard.
+      • Managing state between cart, checkout, and order creation.
+
+  Employee Management System
+      • EMS (Employee Management System) is a modern web application designed to
+        manage employee records securely and efficiently.
+
