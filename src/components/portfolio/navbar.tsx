@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { navItems, sectionIds, type SectionId } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -19,35 +19,84 @@ function scrollToSection(id: SectionId) {
 export function Navbar() {
   const [active, setActive] = useState<SectionId>("home");
   const [open, setOpen] = useState(false);
-
-  const ids = useMemo(() => [...sectionIds], []);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const getOrderedSections = () =>
+      sectionIds
+        .map((id) => {
+          const element = document.getElementById(id);
+          return element ? { id, element } : null;
+        })
+        .filter((item): item is { id: SectionId; element: HTMLElement } => Boolean(item))
+        .sort(
+          (a, b) =>
+            a.element.getBoundingClientRect().top + window.scrollY -
+            (b.element.getBoundingClientRect().top + window.scrollY)
+        );
 
-        if (visible[0]) {
-          setActive(visible[0].target.id as SectionId);
+    const updateActiveSection = () => {
+      const header = document.querySelector("header");
+      const headerHeight = header instanceof HTMLElement ? header.offsetHeight : 0;
+      const sections = getOrderedSections();
+
+      if (!sections.length) {
+        setActive("home");
+        return;
+      }
+
+      const focalPoint = headerHeight + Math.max(140, window.innerHeight * 0.28);
+      let current = sections[0].id;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      for (const section of sections) {
+        const rect = section.element.getBoundingClientRect();
+        const top = rect.top;
+        const bottom = rect.bottom;
+        const center = top + rect.height / 2;
+
+        const distance =
+          focalPoint >= top && focalPoint <= bottom
+            ? 0
+            : Math.abs(center - focalPoint);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          current = section.id;
         }
-      },
-      {
-        rootMargin: "-35% 0px -55% 0px",
-        threshold: [0.2, 0.5, 0.8],
       }
-    );
 
-    ids.forEach((id) => {
-      const node = document.getElementById(id);
-      if (node) {
-        observer.observe(node);
+      const pageBottom = window.scrollY + window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      if (documentHeight - pageBottom < 8) {
+        current = sections[sections.length - 1].id;
       }
-    });
 
-    return () => observer.disconnect();
-  }, [ids]);
+      setActive((previous) => (previous === current ? previous : current));
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateActiveSection();
+        ticking = false;
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -86,15 +135,36 @@ export function Navbar() {
                 <li key={item.id}>
                   <button
                     type="button"
-                    onClick={() => scrollToSection(item.id)}
+                    onClick={() => {
+                      setActive(item.id);
+                      scrollToSection(item.id);
+                    }}
                     className={cn(
-                      "rounded-full px-3 py-2 text-sm text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
+                      "relative rounded-full px-3.5 py-2 text-sm font-medium tracking-[0.01em] transition-[color,background-color] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
                       active === item.id
-                        ? "bg-white text-zinc-950"
-                        : "hover:bg-white/8 hover:text-white"
+                        ? "text-zinc-950"
+                        : "text-zinc-300/92 hover:bg-white/7 hover:text-zinc-100"
                     )}
+                    aria-current={active === item.id ? "page" : undefined}
                   >
-                    {item.label}
+                    {active === item.id ? (
+                      <motion.span
+                        layoutId="desktop-nav-active-pill"
+                        className="absolute inset-0 rounded-full border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(236,236,236,0.94))] shadow-[0_8px_24px_rgba(255,255,255,0.12),inset_0_1px_0_rgba(255,255,255,0.75)]"
+                        transition={
+                          prefersReducedMotion
+                            ? { duration: 0 }
+                            : { type: "spring", stiffness: 280, damping: 32, mass: 0.9 }
+                        }
+                      />
+                    ) : null}
+                    <motion.span
+                      className="relative z-10 block"
+                      animate={{ y: active === item.id ? -0.2 : 0 }}
+                      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.22, ease: "easeOut" }}
+                    >
+                      {item.label}
+                    </motion.span>
                   </button>
                 </li>
               ))}
@@ -128,15 +198,17 @@ export function Navbar() {
                       key={item.id}
                       type="button"
                       onClick={() => {
+                        setActive(item.id);
                         scrollToSection(item.id);
                         setOpen(false);
                       }}
                       className={cn(
-                        "block w-full rounded-2xl px-4 py-3 text-left text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
+                        "block w-full rounded-2xl px-4 py-3 text-left text-base font-medium transition-[color,background-color] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
                         active === item.id
-                          ? "bg-white text-zinc-950"
-                          : "text-white/88 hover:bg-white/8 hover:text-white"
+                          ? "border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(236,236,236,0.94))] text-zinc-950 shadow-[0_8px_24px_rgba(255,255,255,0.08)]"
+                          : "border border-transparent text-white/88 hover:bg-white/8 hover:text-white"
                       )}
+                      aria-current={active === item.id ? "page" : undefined}
                     >
                       {item.label}
                     </button>
