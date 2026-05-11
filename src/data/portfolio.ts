@@ -91,7 +91,7 @@ export const projects = [
 export const contactDetails = {
   email: "brnaveenkumar1307@gmail.com",
   phone: "+91 8197456715",
-  location: "Bengaluru, India",
+  location: "Bangalore, India",
   availability:
     "Passionate about learning, optimizing performance, and creating user-focused solutions.",
 };
