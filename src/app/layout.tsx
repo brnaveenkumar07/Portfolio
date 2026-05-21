@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { profileImageSrc } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     images: [profileImageSrc],
   },
   icons: {
-    icon: profileImageSrc,
+    icon: "/favicon.svg",
     apple: profileImageSrc,
   },
 };
@@ -43,12 +44,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("dark")}>
+    <html lang="en" suppressHydrationWarning className={cn("dark")}>
       <body>
-        <TooltipProvider>
-          {children}
-          <Toaster />
-        </TooltipProvider>
+        <ThemeProvider>
+          <TooltipProvider>
+            {children}
+            <Toaster />
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
