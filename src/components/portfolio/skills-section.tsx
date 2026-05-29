@@ -13,13 +13,13 @@ export function SkillsSection() {
       <div className="grid gap-4 md:grid-cols-2">
         {skills.map((group, index) => (
           <Reveal key={group.category} delay={index * 0.08}>
-            <article className="rounded-2xl border border-zinc-800/90 bg-zinc-900/55 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:p-6">
-              <h3 className="text-base font-semibold text-zinc-100">{group.category}</h3>
+            <article className="portfolio-panel rounded-2xl p-5 sm:p-6">
+              <h3 className="text-base font-semibold text-[var(--portfolio-text-strong)]">{group.category}</h3>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full border border-zinc-700 bg-zinc-950 px-3 py-1 text-xs text-zinc-300"
+                    className="portfolio-chip rounded-full px-3 py-1 text-xs"
                   >
                     {item}
                   </li>

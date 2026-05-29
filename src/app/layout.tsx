@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     images: [profileImageSrc],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: "/favicon.png?v=20260529",
     apple: profileImageSrc,
   },
 };

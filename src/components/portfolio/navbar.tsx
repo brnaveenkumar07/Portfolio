@@ -122,9 +122,9 @@ export function Navbar() {
       <div className="mx-auto w-[min(1040px,94vw)]">
         <nav
           aria-label="Primary navigation"
-          className="relative overflow-hidden rounded-[22px] border border-border/70 bg-background/80 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.22),0_10px_30px_-12px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+          className="relative overflow-hidden rounded-[22px] border border-[var(--portfolio-border)] bg-[color-mix(in_srgb,var(--background)_84%,transparent)] shadow-[var(--portfolio-shadow-float)] backdrop-blur-xl"
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_52%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.72),transparent_58%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_52%)]" />
           <div className="relative flex min-h-18 items-center justify-between px-5 sm:px-6 lg:px-8">
             <Link
               href="#home"
@@ -143,17 +143,17 @@ export function Navbar() {
                       scrollToSection(item.id);
                     }}
                     className={cn(
-                      "relative rounded-full px-3.5 py-2 text-sm font-medium tracking-[0.01em] transition-[color,background-color] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
+                      "relative rounded-full px-3.5 py-2 text-sm font-medium tracking-[0.01em] transition-[color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)]",
                       active === item.id
-                        ? "text-zinc-950"
-                        : "text-foreground/72 hover:bg-foreground/6 hover:text-foreground"
+                        ? "text-primary-foreground dark:text-zinc-950"
+                        : "text-foreground/68 hover:bg-foreground/5 hover:text-foreground dark:hover:bg-foreground/6"
                     )}
                     aria-current={active === item.id ? "page" : undefined}
                   >
                     {active === item.id ? (
                       <motion.span
                         layoutId="desktop-nav-active-pill"
-                        className="absolute inset-0 rounded-full border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(236,236,236,0.94))] shadow-[0_8px_24px_rgba(255,255,255,0.12),inset_0_1px_0_rgba(255,255,255,0.75)]"
+                        className="absolute inset-0 rounded-full border border-[var(--portfolio-nav-active-border)] bg-[image:var(--portfolio-nav-active)] shadow-[0_10px_26px_-18px_rgba(15,23,42,0.72),inset_0_1px_0_rgba(255,255,255,0.18)] dark:shadow-[0_8px_24px_rgba(255,255,255,0.12),inset_0_1px_0_rgba(255,255,255,0.75)]"
                         transition={
                           prefersReducedMotion
                             ? { duration: 0 }
@@ -176,7 +176,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((current) => !current)}
-              className="rounded-full border border-border/70 bg-background/80 p-2 text-foreground transition-colors hover:bg-foreground/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 lg:hidden"
+              className="rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] p-2 text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6 lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-nav-menu"
               aria-label="Toggle navigation"
@@ -187,7 +187,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
-              className="ml-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/70 bg-background/80 text-foreground transition-colors hover:bg-foreground/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+              className="ml-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6"
               aria-label={isDarkTheme ? "Switch to light theme" : "Switch to dark theme"}
             >
               {isDarkTheme ? <MoonStar className="h-4.5 w-4.5" /> : <SunMedium className="h-4.5 w-4.5" />}
@@ -202,7 +202,7 @@ export function Navbar() {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.24, ease: "easeOut" }}
-                className="overflow-hidden border-t border-white/10 lg:hidden"
+                className="overflow-hidden border-t border-[var(--portfolio-border)] lg:hidden"
               >
                 <div className="space-y-2 px-4 py-4 sm:px-6">
                   {navItems.map((item) => (
@@ -215,10 +215,10 @@ export function Navbar() {
                         setOpen(false);
                       }}
                       className={cn(
-                        "block w-full rounded-2xl px-4 py-3 text-left text-base font-medium transition-[color,background-color] duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50",
+                        "block w-full rounded-2xl px-4 py-3 text-left text-base font-medium transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)]",
                         active === item.id
-                          ? "border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(236,236,236,0.94))] text-zinc-950 shadow-[0_8px_24px_rgba(255,255,255,0.08)]"
-                          : "border border-transparent text-foreground/88 hover:bg-foreground/6 hover:text-foreground"
+                          ? "border border-[var(--portfolio-nav-active-border)] bg-[image:var(--portfolio-nav-active)] text-primary-foreground shadow-sm dark:text-zinc-950 dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)]"
+                          : "border border-transparent text-foreground/78 hover:bg-foreground/5 hover:text-foreground dark:hover:bg-foreground/6"
                       )}
                       aria-current={active === item.id ? "page" : undefined}
                     >
@@ -231,7 +231,7 @@ export function Navbar() {
           </AnimatePresence>
         </nav>
 
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-linear-to-b from-black/35 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-linear-to-b from-slate-200/35 to-transparent dark:from-black/35" />
       </div>
     </motion.header>
   );

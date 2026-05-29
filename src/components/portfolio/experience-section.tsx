@@ -13,15 +13,15 @@ export function ExperienceSection() {
       <div className="space-y-4">
         {experiences.map((item, index) => (
           <Reveal key={item.role + item.company} delay={index * 0.06}>
-            <article className="rounded-2xl border border-zinc-800/90 bg-zinc-900/55 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition-colors hover:border-zinc-700 sm:p-6">
+            <article className="portfolio-panel portfolio-panel-hover rounded-2xl p-5 sm:p-6">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-lg font-semibold text-zinc-100">{item.role}</h3>
-                <p className="text-xs text-zinc-400">{item.period}</p>
+                <h3 className="text-lg font-semibold text-[var(--portfolio-text-strong)]">{item.role}</h3>
+                <p className="text-xs text-[var(--portfolio-text-muted)]">{item.period}</p>
               </div>
-              <p className="mt-1 text-sm text-zinc-300">
-                {item.company} <span className="text-zinc-500">• {item.location}</span>
+              <p className="mt-1 text-sm text-[var(--portfolio-text)]">
+                {item.company} <span className="text-[var(--portfolio-text-faint)]">• {item.location}</span>
               </p>
-              <p className="mt-3 text-sm leading-7 text-zinc-400">{item.description}</p>
+              <p className="mt-3 text-sm leading-7 text-[var(--portfolio-text-muted)]">{item.description}</p>
             </article>
           </Reveal>
         ))}

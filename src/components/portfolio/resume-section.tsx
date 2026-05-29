@@ -14,18 +14,18 @@ export function ResumeSection() {
       description="My latest resume in PDF format."
     >
       <Reveal>
-        <div className="flex flex-col gap-5 rounded-2xl border border-zinc-800/90 bg-zinc-900/60 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:flex-row sm:items-center sm:justify-between sm:p-7">
+        <div className="portfolio-panel flex flex-col gap-5 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
           <div className="flex items-start gap-4">
-            <div className="rounded-xl border border-zinc-700 bg-zinc-950 p-2.5">
-              <FileText className="size-5 text-zinc-200" />
+            <div className="portfolio-icon-tile rounded-xl p-2.5">
+              <FileText className="size-5" />
             </div>
             <div>
-              <p className="text-sm font-medium text-zinc-100">B R NAVEEN KUMAR - Resume</p>
-              <p className="mt-1 text-sm text-zinc-400">PDF format, updated with latest internship and project experience.</p>
+              <p className="text-sm font-medium text-[var(--portfolio-text-strong)]">B R NAVEEN KUMAR - Resume</p>
+              <p className="mt-1 text-sm text-[var(--portfolio-text-muted)]">PDF format, updated with latest internship and project experience.</p>
             </div>
           </div>
           <Link href={resumeLink} target="_blank">
-            <Button className="h-10 rounded-full bg-zinc-100 px-5 text-zinc-900 hover:bg-zinc-200">
+            <Button className="portfolio-primary-button h-10 rounded-full px-5 transition-all duration-200">
               Download
               <Download className="size-4" />
             </Button>

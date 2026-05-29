@@ -15,17 +15,17 @@ export function ProjectsSection() {
       <div className="grid gap-4 md:grid-cols-2">
         {projects.map((project, index) => (
           <Reveal key={project.name} delay={index * 0.08}>
-            <article className="group h-full rounded-2xl border border-zinc-800/90 bg-zinc-900/50 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900/80">
+            <article className="portfolio-panel portfolio-panel-hover group h-full rounded-2xl p-6 transition-all duration-200 hover:-translate-y-0.5">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="text-lg font-semibold text-zinc-100">{project.name}</h3>
-                <ArrowUpRight className="mt-1 size-4 text-zinc-500 transition-colors group-hover:text-zinc-300" />
+                <h3 className="text-lg font-semibold text-[var(--portfolio-text-strong)]">{project.name}</h3>
+                <ArrowUpRight className="mt-1 size-4 text-[var(--portfolio-text-faint)] transition-colors group-hover:text-[var(--portfolio-text)]" />
               </div>
-              <p className="mt-3 text-sm leading-7 text-zinc-400">{project.description}</p>
+              <p className="mt-3 text-sm leading-7 text-[var(--portfolio-text-muted)]">{project.description}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {project.stack.map((tech) => (
                   <li
                     key={tech}
-                    className="rounded-full border border-zinc-700/80 bg-zinc-950 px-3 py-1 text-[11px] text-zinc-300"
+                    className="portfolio-chip rounded-full px-3 py-1 text-[11px]"
                   >
                     {tech}
                   </li>
@@ -36,7 +36,7 @@ export function ProjectsSection() {
                   href={project.liveLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex text-sm font-medium text-zinc-100 underline underline-offset-4 transition-colors hover:text-white"
+                  className="inline-flex text-sm font-medium text-[var(--portfolio-text-strong)] underline underline-offset-4 transition-colors duration-200 hover:text-slate-700 dark:hover:text-white"
                 >
                   Live demo
                 </Link>
@@ -44,7 +44,7 @@ export function ProjectsSection() {
                   href={project.sourceLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex text-sm font-medium text-zinc-400 underline underline-offset-4 transition-colors hover:text-zinc-100"
+                  className="inline-flex text-sm font-medium text-[var(--portfolio-text-muted)] underline underline-offset-4 transition-colors duration-200 hover:text-[var(--portfolio-text-strong)]"
                 >
                   Source code
                 </Link>
