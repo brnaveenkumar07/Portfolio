@@ -50,7 +50,7 @@ export function HeroSection() {
           <div className="flex flex-wrap gap-3">
             <Button
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="portfolio-primary-button h-10 rounded-full px-5 transition-all duration-200"
+              className="portfolio-primary-button h-10 rounded-full px-5 transition-all duration-200 cursor-pointer"
             >
               View Selected Work
               <ArrowUpRight className="size-4" />
@@ -58,7 +58,7 @@ export function HeroSection() {
             <Button
               variant="outline"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="portfolio-secondary-button h-10 rounded-full px-5 transition-all duration-200"
+              className="portfolio-secondary-button h-10 rounded-full px-5 transition-all duration-200 cursor-pointer"
             >
               Contact Me
             </Button>

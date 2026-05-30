@@ -25,7 +25,7 @@ export function ResumeSection() {
             </div>
           </div>
           <Link href={resumeLink} target="_blank">
-            <Button className="portfolio-primary-button h-10 rounded-full px-5 transition-all duration-200">
+            <Button className="portfolio-primary-button h-10 rounded-full px-5 transition-all duration-200 cursor-pointer">
               Download
               <Download className="size-4" />
             </Button>

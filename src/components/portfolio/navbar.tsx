@@ -143,7 +143,7 @@ export function Navbar() {
                       scrollToSection(item.id);
                     }}
                     className={cn(
-                      "relative rounded-full px-3.5 py-2 text-sm font-medium tracking-[0.01em] transition-[color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)]",
+                      "relative rounded-full px-3.5 py-2 text-sm font-medium tracking-[0.01em] transition-[color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] cursor-pointer",
                       active === item.id
                         ? "text-primary-foreground dark:text-zinc-950"
                         : "text-foreground/68 hover:bg-foreground/5 hover:text-foreground dark:hover:bg-foreground/6"
@@ -176,7 +176,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((current) => !current)}
-              className="rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] p-2 text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6 lg:hidden"
+              className="rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] p-2 text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6 lg:hidden cursor-pointer"
               aria-expanded={open}
               aria-controls="mobile-nav-menu"
               aria-label="Toggle navigation"
@@ -187,7 +187,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
-              className="ml-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6"
+              className="ml-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6 cursor-pointer"
               aria-label={isDarkTheme ? "Switch to light theme" : "Switch to dark theme"}
             >
               {isDarkTheme ? <MoonStar className="h-4.5 w-4.5" /> : <SunMedium className="h-4.5 w-4.5" />}
@@ -215,7 +215,7 @@ export function Navbar() {
                         setOpen(false);
                       }}
                       className={cn(
-                        "block w-full rounded-2xl px-4 py-3 text-left text-base font-medium transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)]",
+                        "block w-full rounded-2xl px-4 py-3 text-left text-base font-medium transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] cursor-pointer",
                         active === item.id
                           ? "border border-[var(--portfolio-nav-active-border)] bg-[image:var(--portfolio-nav-active)] text-primary-foreground shadow-sm dark:text-zinc-950 dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)]"
                           : "border border-transparent text-foreground/78 hover:bg-foreground/5 hover:text-foreground dark:hover:bg-foreground/6"

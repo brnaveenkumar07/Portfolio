@@ -35,7 +35,7 @@ export function ContactSection() {
           </div>
           <div className="mt-6">
             <Link href={`mailto:${contactDetails.email}`}>
-              <Button className="portfolio-primary-button h-10 rounded-full px-5 transition-all duration-200">
+              <Button className="portfolio-primary-button h-10 rounded-full px-5 transition-all duration-200 cursor-pointer">
                 Start a conversation
               </Button>
             </Link>

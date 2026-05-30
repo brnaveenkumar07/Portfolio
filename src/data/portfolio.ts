@@ -57,7 +57,7 @@ export const skills = [
   },
   {
     category: "Databases & Tools",
-    items: ["MongoDB", "SQL", "Git", "GitHub", "Postman", "VS Code", "Codex"],
+    items: ["MongoDB", "SQL", "Git", "GitHub", "Postman", "VS Code"],
   },
 ];
 
