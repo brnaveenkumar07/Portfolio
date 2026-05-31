@@ -20,8 +20,8 @@ export default function HomePage() {
         <div className="space-y-20 pt-18 sm:space-y-24 sm:pt-20 lg:space-y-26">
           <AboutSection />
           <ExperienceSection />
-          <SkillsSection />
           <ProjectsSection />
+          <SkillsSection />
           <GithubSection />
           <ResumeSection />
           <ContactSection />
