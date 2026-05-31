@@ -18,11 +18,11 @@ export default function HomePage() {
       <main className="mx-auto w-[min(1040px,94vw)] pb-24 pt-28 sm:pt-32">
         <HeroSection />
         <div className="space-y-20 pt-18 sm:space-y-24 sm:pt-20 lg:space-y-26">
-          <ProjectsSection />
-          <GithubSection />
+          <AboutSection />
           <ExperienceSection />
           <SkillsSection />
-          <AboutSection />
+          <ProjectsSection />
+          <GithubSection />
           <ResumeSection />
           <ContactSection />
         </div>
