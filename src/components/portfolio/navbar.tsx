@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MoonStar, Menu, SunMedium, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import { navItems, sectionIds, type SectionId } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 

@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={cn("dark")}>
       <body>
-        <ThemeProvider>
+        <ThemeProvider defaultTheme="dark" enableSystem disableTransitionOnChange>
           <TooltipProvider>
             {children}
             <Toaster />
