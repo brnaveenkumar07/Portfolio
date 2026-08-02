@@ -29,7 +29,7 @@ export const socialLinks = [
 ];
 
 export const aboutText =
-  "Full Stack Developer with hands-on experience in building scalable web applications using modern technologies. Skilled in both frontend and backend development, with a strong foundation in problem-solving and clean code practices. Completed internship experience at Prodigy Infotech, delivering real-world projects with a user-focused mindset.";
+  "Detail-oriented Full Stack Developer with hands-on experience building responsive web applications using React, Next.js, Node.js, Express.js, MongoDB, SQL, and JavaScript. Proficient in frontend and backend development with a strong foundation in problem-solving, clean code practices, and REST API development. Completed a Full Stack Development internship at Prodigy Infotech, contributing to real-world projects in a collaborative development environment.";
 
 export const experiences = [
   {
@@ -38,7 +38,7 @@ export const experiences = [
     period: "Feb 2026 - Mar 2026",
     location: "Remote",
     description:
-      "Completed a hands-on internship delivering real-world full-stack tasks, built and deployed multiple projects, improved debugging and optimization practices, and collaborated through version-controlled task workflows.",
+      "Executed real-world full-stack development tasks using modern frontend and backend technologies. Developed and deployed 3+ web applications with React.js, Node.js, Express.js, MongoDB, and JavaScript; debugged and optimized frontend and backend performance issues; and collaborated using Git/GitHub within structured development workflows.",
   },
 ];
 
@@ -91,7 +91,7 @@ export const projects = [
 export const contactDetails = {
   email: "brnaveenkumar1307@gmail.com",
   phone: "+91 8197456715",
-  location: "Bangalore, India",
+  location: "Bengaluru, India",
   availability:
     "Passionate about learning, optimizing performance, and creating user-focused solutions.",
 };
