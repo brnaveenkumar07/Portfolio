@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, Globe2 } from "lucide-react";
 import { projects } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/section-shell";
 import { Reveal } from "@/components/portfolio/reveal";
@@ -31,22 +31,26 @@ export function ProjectsSection() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-5 flex flex-wrap items-center gap-4">
+              <div className="mt-5 flex flex-wrap items-center gap-3">
                 <Link
                   href={project.liveLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex text-sm font-medium text-[var(--portfolio-text-strong)] underline underline-offset-4 transition-colors duration-200 hover:text-slate-700 dark:hover:text-white"
+                  aria-label={`View ${project.name} live demo`}
+                  title="Live demo"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-[var(--portfolio-border)] text-[var(--portfolio-text-strong)] transition-colors duration-200 hover:border-[var(--portfolio-text-muted)] hover:bg-[var(--portfolio-surface-hover)] hover:text-slate-700 dark:hover:text-white"
                 >
-                  Live demo
+                  <Globe2 className="size-5" aria-hidden="true" />
                 </Link>
                 <Link
                   href={project.sourceLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex text-sm font-medium text-[var(--portfolio-text-muted)] underline underline-offset-4 transition-colors duration-200 hover:text-[var(--portfolio-text-strong)]"
+                  aria-label={`View ${project.name} source code on GitHub`}
+                  title="Source code on GitHub"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-[var(--portfolio-border)] text-[var(--portfolio-text-muted)] transition-colors duration-200 hover:border-[var(--portfolio-text-muted)] hover:bg-[var(--portfolio-surface-hover)] hover:text-[var(--portfolio-text-strong)]"
                 >
-                  Source code
+                  <Github className="size-5" aria-hidden="true" />
                 </Link>
               </div>
             </article>
