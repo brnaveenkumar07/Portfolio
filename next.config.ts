@@ -21,7 +21,6 @@ const nextConfig: NextConfig = {
     localPatterns: [
       {
         pathname: "/profile.jpg",
-        search: "?v=20260323",
       },
     ],
   },

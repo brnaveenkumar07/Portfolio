@@ -98,4 +98,4 @@ export const contactDetails = {
 
 export const resumeLink = "/resume.pdf";
 export const githubUsername = "brnaveenkumar07";
-export const profileImageSrc = "/profile.jpg?v=20260323";
+export const profileImageSrc = "/profile.jpg?v=20261009";
