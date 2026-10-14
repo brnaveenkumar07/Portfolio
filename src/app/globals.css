@@ -60,6 +60,10 @@
   --portfolio-focus: rgba(255, 255, 255, 0.5);
   --portfolio-nav-active: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(236, 236, 236, 0.94));
   --portfolio-nav-active-border: rgba(255, 255, 255, 0.7);
+  --portfolio-nav-active-foreground: #18181b;
+  --portfolio-nav-active-shadow: 0 8px 24px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  --portfolio-nav-item-hover: rgba(255, 255, 255, 0.1);
+  --portfolio-nav-item-press: rgba(255, 255, 255, 0.16);
 }
 
 html.light {
@@ -112,6 +116,10 @@ html.light {
   --portfolio-focus: rgba(59, 130, 246, 0.38);
   --portfolio-nav-active: linear-gradient(180deg, #172033 0%, #0f172a 100%);
   --portfolio-nav-active-border: rgba(15, 23, 42, 0.18);
+  --portfolio-nav-active-foreground: #f8fafc;
+  --portfolio-nav-active-shadow: 0 10px 24px -14px rgba(15, 23, 42, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --portfolio-nav-item-hover: rgba(15, 23, 42, 0.07);
+  --portfolio-nav-item-press: rgba(15, 23, 42, 0.12);
 }
 
 * {
@@ -123,6 +131,19 @@ body {
   margin: 0;
   min-height: 100%;
   scroll-behavior: smooth;
+  scroll-padding-top: 6.75rem;
+}
+
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 639px) {
+  html,
+  body {
+    scroll-padding-top: 5.5rem;
+  }
 }
 
 body {

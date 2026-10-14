@@ -10,9 +10,7 @@ import { cn } from "@/lib/utils";
 
 function scrollToSection(id: SectionId) {
   const section = document.getElementById(id);
-  if (!section) {
-    return;
-  }
+  if (!section) return;
 
   section.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -102,6 +100,23 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    const closeMenuForHashNavigation = () => setOpen(false);
+    window.addEventListener("hashchange", closeMenuForHashNavigation);
+    return () => window.removeEventListener("hashchange", closeMenuForHashNavigation);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setOpen(false);
@@ -117,15 +132,15 @@ export function Navbar() {
       initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed inset-x-0 top-0 z-50 px-4 py-5 sm:px-6"
+      className="fixed inset-x-0 top-0 z-50 px-3 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 sm:px-6 sm:py-5"
     >
-      <div className="mx-auto w-[min(1040px,94vw)]">
+      <div className="mx-auto w-full max-w-[1040px] sm:w-[min(1040px,94vw)]">
         <nav
           aria-label="Primary navigation"
           className="relative overflow-hidden rounded-[22px] border border-[var(--portfolio-border)] bg-[color-mix(in_srgb,var(--background)_84%,transparent)] shadow-[var(--portfolio-shadow-float)] backdrop-blur-xl"
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.72),transparent_58%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_52%)]" />
-          <div className="relative flex min-h-18 items-center justify-between px-5 sm:px-6 lg:px-8">
+          <div className="relative flex min-h-16 items-center justify-between px-4 sm:min-h-18 sm:px-6 lg:px-8">
             <Link
               href="#home"
               className="text-xs font-semibold tracking-[0.28em] text-foreground uppercase transition-opacity hover:opacity-80"
@@ -145,9 +160,14 @@ export function Navbar() {
                     className={cn(
                       "relative rounded-full px-3.5 py-2 text-sm font-medium tracking-[0.01em] transition-[color,background-color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] cursor-pointer",
                       active === item.id
-                        ? "text-primary-foreground dark:text-zinc-950"
+                        ? "text-[var(--portfolio-nav-active-foreground)]"
                         : "text-foreground/68 hover:bg-foreground/5 hover:text-foreground dark:hover:bg-foreground/6"
                     )}
+                    style={
+                      active === item.id
+                        ? { color: isDarkTheme ? "#18181b" : "#f8fafc" }
+                        : undefined
+                    }
                     aria-current={active === item.id ? "page" : undefined}
                   >
                     {active === item.id ? (
@@ -173,25 +193,26 @@ export function Navbar() {
               ))}
             </ul>
 
-            <button
-              type="button"
-              onClick={() => setOpen((current) => !current)}
-              className="rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] p-2 text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6 lg:hidden cursor-pointer"
-              aria-expanded={open}
-              aria-controls="mobile-nav-menu"
-              aria-label="Toggle navigation"
-            >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
-              className="ml-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6 cursor-pointer"
-              aria-label={isDarkTheme ? "Switch to light theme" : "Switch to dark theme"}
-            >
-              {isDarkTheme ? <MoonStar className="h-4.5 w-4.5" /> : <SunMedium className="h-4.5 w-4.5" />}
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setOpen((current) => !current)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6 lg:hidden cursor-pointer"
+                aria-expanded={open}
+                aria-controls="mobile-nav-menu"
+                aria-label={open ? "Close navigation" : "Open navigation"}
+              >
+                {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+              <button
+                type="button"
+                onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--portfolio-border)] bg-[var(--portfolio-surface)] text-foreground shadow-sm transition-colors duration-200 hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] dark:hover:bg-foreground/6 cursor-pointer"
+                aria-label={isDarkTheme ? "Switch to light theme" : "Switch to dark theme"}
+              >
+                {isDarkTheme ? <MoonStar className="h-4.5 w-4.5" /> : <SunMedium className="h-4.5 w-4.5" />}
+              </button>
+            </div>
           </div>
 
           <AnimatePresence initial={false}>
@@ -202,28 +223,32 @@ export function Navbar() {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.24, ease: "easeOut" }}
-                className="overflow-hidden border-t border-[var(--portfolio-border)] lg:hidden"
+                className="max-h-[calc(100dvh-5.75rem-env(safe-area-inset-top))] overflow-y-auto border-t border-[var(--portfolio-border)] overscroll-contain lg:hidden"
               >
-                <div className="space-y-2 px-4 py-4 sm:px-6">
+                <div className="space-y-1.5 px-3 py-3 sm:space-y-2 sm:px-6 sm:py-4">
                   {navItems.map((item) => (
-                    <button
+                    <Link
                       key={item.id}
-                      type="button"
+                      href={`#${item.id}`}
                       onClick={() => {
                         setActive(item.id);
-                        scrollToSection(item.id);
                         setOpen(false);
                       }}
                       className={cn(
-                        "block w-full rounded-2xl px-4 py-3 text-left text-base font-medium transition-[color,background-color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] cursor-pointer",
+                        "block w-full rounded-2xl px-4 py-3 text-left text-[0.95rem] font-semibold transition-[color,background-color,box-shadow,filter] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--portfolio-focus)] cursor-pointer",
                         active === item.id
-                          ? "border border-[var(--portfolio-nav-active-border)] bg-[image:var(--portfolio-nav-active)] text-primary-foreground shadow-sm dark:text-zinc-950 dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)]"
-                          : "border border-transparent text-foreground/78 hover:bg-foreground/5 hover:text-foreground dark:hover:bg-foreground/6"
+                          ? "border border-[var(--portfolio-nav-active-border)] bg-[image:var(--portfolio-nav-active)] text-[var(--portfolio-nav-active-foreground)] shadow-[var(--portfolio-nav-active-shadow)] hover:brightness-110 active:brightness-95"
+                          : "border border-transparent text-foreground/78 hover:bg-[var(--portfolio-nav-item-hover)] hover:text-foreground active:bg-[var(--portfolio-nav-item-press)] active:text-foreground"
                       )}
+                      style={
+                        active === item.id
+                          ? { color: isDarkTheme ? "#18181b" : "#f8fafc" }
+                          : undefined
+                      }
                       aria-current={active === item.id ? "page" : undefined}
                     >
                       {item.label}
-                    </button>
+                    </Link>
                   ))}
                 </div>
               </motion.div>
