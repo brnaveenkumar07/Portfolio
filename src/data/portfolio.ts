@@ -24,7 +24,7 @@ export const navItems: { id: SectionId; label: string }[] = [
 
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com/brnaveenkumar07" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/br-naveen-kumar" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/brnaveenkumar07" },
   { label: "Email", href: "mailto:brnaveenkumar1307@gmail.com" },
 ];
 
